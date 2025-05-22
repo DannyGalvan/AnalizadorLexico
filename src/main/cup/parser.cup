@@ -57,8 +57,8 @@ sentencia ::= DEFINE ID EQ expr SEMICOLON
             | IF expr THEN bloque END
             | WHILE expr DO bloque END
             | LOOP LPAR expr SEMICOLON expr SEMICOLON expr RPAR DO bloque END
-            | FUNCTION ID LPAR parametros RPAR RETURN expr SEMICOLON END
-            | FUNCTION ID LPAR parametros RPAR bloque RETURN expr SEMICOLON END;
+            | FUNCTION ID LPAR parametros RPAR bloque END;
+            
 
 parametros ::= expr
              | parametros COMMA expr

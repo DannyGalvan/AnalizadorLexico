@@ -24,9 +24,18 @@ public class LoadTextController {
 
         try {
             AnalizadorLexico lexer = new AnalizadorLexico(
-                    new StringReader("LOOP (i = 0; i < 5; i = i + 1) DO\r\n" + //
-                            "    PRINT \"Iteración:\", i;\r\n" + //
-                            "END"));
+                    new StringReader("FUNCTION factorial(n)\r\n" + //
+                            "    DEFINE resultado = 1;\r\n" + //
+                            "    WHILE n > 1 DO\r\n" + //
+                            "        resultado = resultado * n;\r\n" + //
+                            "        n = n - 1;\r\n" + //
+                            "    END\r\n" + //
+                            "    RETURN resultado;\r\n" + //
+                            "END\r\n" + //
+                            "\r\n" + //
+                            "DEFINE num = 5;\r\n" + //
+                            "DEFINE fact = factorial(num);\r\n" + //
+                            "PRINT \"El factorial de \", num, \" es \", fact;"));
 
             parser parser = new parser(lexer);
             Symbol result = parser.parse();
