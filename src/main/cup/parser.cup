@@ -13,7 +13,7 @@ parser code {:
     }
 :};
 
-terminal DEFINE, PRINT, IF, ELSE, ELSEIF, WHILE, DO, LOOP, FUNCTION, RETURN, END;
+terminal DEFINE, PRINT, IF, ELSE, ELSEIF, WHILE, DO, LOOP, FUNCTION, RETURN, END, THEN;
 terminal TRUE, FALSE;
 terminal AND, OR, NOT;
 terminal EQ, EQEQ, NEQ, LT, GT, LTE, GTE;
@@ -50,10 +50,11 @@ sentencias ::= sentencias sentencia
 sentencia ::= DEFINE ID EQ expr SEMICOLON
             | ID EQ expr SEMICOLON
             | RETURN expr SEMICOLON
-            | PRINT expr_list SEMICOLON
-            | IF expr bloque ELSEIF expr bloque ELSE bloque END
-            | IF expr bloque ELSE bloque END
-            | IF expr bloque END
+            | PRINT expr SEMICOLON
+            | PRINT expr_list SEMICOLON           
+            | IF expr THEN bloque ELSEIF expr THEN bloque ELSE bloque END
+            | IF expr THEN bloque ELSE bloque END
+            | IF expr THEN bloque END
             | WHILE expr DO bloque END
             | LOOP LPAR sentencia sentencia expr RPAR bloque END
             | FUNCTION ID LPAR parametros RPAR RETURN expr SEMICOLON END

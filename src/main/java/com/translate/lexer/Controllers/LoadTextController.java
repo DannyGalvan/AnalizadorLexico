@@ -24,9 +24,14 @@ public class LoadTextController {
 
         try {
             AnalizadorLexico lexer = new AnalizadorLexico(
-                    new StringReader("FUNCTION sumar(a, b)\r\n" + //
-                            "    DEFINE resultado = a + b;\r\n" + //
-                            "    RETURN resultado;\r\n" + //
+                    new StringReader("DEFINE x = 15;\r\n" + //
+                            "\r\n" + //
+                            "IF x > 20 THEN\r\n" + //
+                            "    PRINT \"Mayor que 20\";\r\n" + //
+                            "ELSEIF x > 10 THEN\r\n" + //
+                            "    PRINT \"Mayor que 10 pero menor o igual a 20\";\r\n" + //
+                            "ELSE\r\n" + //
+                            "    PRINT \"10 o menor\";\r\n" + //
                             "END"));
 
             parser parser = new parser(lexer);

@@ -36,6 +36,7 @@ PRINT       = "PRINT"
 IF          = "IF"
 ELSE        = "ELSE"
 ELSEIF      = "ELSEIF"
+THEN        = "THEN"
 WHILE       = "WHILE"
 DO          = "DO"
 LOOP        = "LOOP"
@@ -54,7 +55,7 @@ NOT         = "NOT"
 ID          = [a-zA-Z_][a-zA-Z0-9_]*
 NUMERO      = [0-9]+
 DECIMAL     = [0-9]+"."[0-9]+
-CADENA      = \"([^\"\\n])*\" // string entre comillas dobles
+CADENA      = \"([^\"\n\r])*\"  // string entre comillas dobles
 
 // Operadores
 EQ          = "="
@@ -87,6 +88,7 @@ WHITESPACE  = [ \t\r\n]+
 {IF}            { return symbol(sym.IF); }
 {ELSE}          { return symbol(sym.ELSE); }
 {ELSEIF}        { return symbol(sym.ELSEIF); }
+{THEN}          { return symbol(sym.THEN); }    
 {WHILE}         { return symbol(sym.WHILE); }
 {DO}            { return symbol(sym.DO); }
 {LOOP}          { return symbol(sym.LOOP); }
@@ -102,7 +104,10 @@ WHITESPACE  = [ \t\r\n]+
 
 {DECIMAL}       { return symbol(sym.DECIMAL, Double.parseDouble(yytext())); }
 {NUMERO}        { return symbol(sym.NUMERO, Integer.parseInt(yytext())); }
-{CADENA}        { return symbol(sym.CADENA, yytext().substring(1, yytext().length() - 1)); }
+{CADENA} { 
+    String texto = yytext();
+    return symbol(sym.CADENA, texto.substring(1, texto.length() - 1));
+}
 {ID}            { return symbol(sym.ID, yytext()); }
 
 {EQEQ}          { return symbol(sym.EQEQ); }
